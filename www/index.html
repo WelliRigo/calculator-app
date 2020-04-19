@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Calculadora Welliton</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<section>
+		<h2 class="superior"></h2>
+		<h1 class="inferior"></h1>
+		<ul>
+			<li class="c">C</li>
+			<li class="inverter_sinal">+/-</li>
+			<li class="operacao">%</li>
+			<li class="operacao">÷</li>
+			<li class="numero">7</li>
+			<li class="numero">8</li>
+			<li class="numero">9</li>
+			<li class="operacao">x</li>
+			<li class="numero">4</li>
+			<li class="numero">5</li>
+			<li class="numero">6</li>
+			<li class="operacao">-</li>
+			<li class="numero">1</li>
+			<li class="numero">2</li>
+			<li class="numero">3</li>
+			<li class="operacao">+</li>
+			<li class="zero numero">0</li>
+			<li class="numero">.</li>
+			<li class="igual">=</li>
+		</ul>
+	</section>
+
+<script src="js/jquery.js"></script>
+<script>
+	
+	var numero = $(".numero");
+	var operacao = $(".operacao");
+	var igual = $(".igual");
+	var c = $(".c")
+	var inverter_sinal = $(".inverter_sinal")
+	
+	var valor_1 = "";
+	var valor_2 = "";
+	var valor_operacao = null;
+
+	numero.on("click",function(){
+		//capturar texto dentro do elemento
+		valor = $(this).text();
+
+		console.log(valor);
+		//capturar resultado presente no elemento inferior
+		//valor antes
+		valor_antes_concatenar = $(".inferior").text();
+		//concatenar valor digitado com valor antes e setar em inferior
+		$(".inferior").text(valor_antes_concatenar+valor);
+		//se ele já escolheu a operação, então começa a armazenar o segundo valor
+		if(valor_operacao != null){
+			valor_2 += valor;
+		}
+		console.log(valor_1, valor_operacao, valor_2);
+	});
+
+	operacao.on("click", function(){
+		//armazena o primeiro valor
+		valor_1 = $(".inferior").text();
+		//armazeno qual a operação
+		valor_operacao =  $(this).text();
+
+		//capaturo o valor da operação
+		valor_antes_concatenar = $(".inferior").text();
+		//seto em inferior o valor com a operação
+		$(".inferior").text(valor_antes_concatenar+valor_operacao);
+
+//		console.log(valor_1, valor_2, valor_operacao);
+	});
+
+	igual.on("click", function(){
+		resultado = null;
+
+		//Converte valores para número
+		valor_1 = parseFloat(valor_1);
+		valor_2 = parseFloat(valor_2);
+
+		//Verifica qual a operação e a realiza
+		if(valor_operacao == "+"){
+			resultado = valor_1 + valor_2;
+			console.log(resultado);
+		} else if (valor_operacao == "-"){
+			resultado = valor_1 - valor_2;
+			console.log(resultado);
+		} else if (valor_operacao == "x"){
+			resultado = valor_1 * valor_2;
+			console.log(resultado);
+		} else if (valor_operacao == "÷"){
+			resultado = valor_1 / valor_2;
+			console.log(resultado);
+		} else if(valor_operacao == "%"){
+			resultado = (valor_1 * valor_2)/100
+		}
+
+		//mostrar a operação na parte superior;
+		if ($(".superior").text() == "") {
+			$(".superior").text(valor_1+valor_operacao+valor_2);
+		} else{
+			$(".superior").text($(".superior").text()+ valor_operacao + valor_2);
+		}
+		//mostrar resultado na parte inferior;
+		$(".inferior").text(resultado);
+
+		valor_operacao = null;
+		valor_2 = "";
+
+	});
+
+	inverter_sinal.on("click", function(){
+
+		if (valor_operacao != null) {
+			valor_2 = valor_2 * -1;
+			$(".inferior").text(valor_1 + "" + valor_operacao + "" + (parseFloat(valor_2)));
+		} else{
+			$(".inferior").text($(".inferior").text() * -1 );
+		}
+
+	})
+
+	c.on("click", function(){
+
+		valor_1="";
+		valor_2="";
+		valor_operacao=null;
+		$(".superior").text("");
+		$(".inferior").text("");
+
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+@font-face {
+    font-family: futura;
+    src: url(../fonts/LTe50152.woff);
+}
+body{
+	background: #ED5E1F;
+}
+body section{
+	display: flex;
+	flex-wrap: wrap;
+	font-family: futura,"calibri";	
+	height: 100vh;
+}
+body section h2{
+	width: 100vw;
+	background: white;
+	text-align: right;
+	font-size: 1.4em;
+	height: 11vh;
+	box-sizing: border-box;
+	padding: 2.5vh 6vw; 
+}
+body section h1{
+	width: 100vw;
+	background: #6732ff;
+	text-align: right;
+	font-size: 8vh;
+	color: white;
+	height: 14vh;
+	box-sizing: border-box;
+	padding: 3.5vh 6vw 0 0;
+}
+body section ul{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100vw;
+	background: white;
+}
+body section ul li{
+	width: 25vw;
+	text-align: center;
+	font-size: 1.7em;
+	height: 15vh;
+	color: rgba(0,0,0, 0.8);
+	border: 1px solid rgba(0,0,0, 0.07);
+	box-sizing: border-box;
+	line-height: 15vh;
+}
+body section ul li:active{
+	background: rgba(0,0,0, 0.07);
+}
+body section ul li.zero{
+	width: 50vw;
+}
+body section ul li.igual{
+	background: #f8506b;
+	color: white;
+}
